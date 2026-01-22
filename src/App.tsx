@@ -6,6 +6,7 @@ import TermsOfService from "./components/TermsOfService";
 import Landing from "./components/Landing";
 import NotFound from "./components/NotFound";
 import CountContext from "./contexts/CountContext";
+import { useFetch } from "./components/customHooks/useFetch";
 
 function App() {
   
@@ -43,6 +44,10 @@ function App() {
 // ROUTING
 
 const [count, setCount] = useState(0);
+const [currPostNo, setCurrPostNo] = useState(1);
+// const { post: newPost, loading } = useFetch(
+//   "https://jsonplaceholder.typicode.com/posts/" + currPostNo,
+// );
 
 return (
   <CountContext.Provider
@@ -51,6 +56,7 @@ return (
       setCount,
     }}
   >
+
     <div>
       <Blogs />
       <TermsOfService />
@@ -68,6 +74,13 @@ return (
       </Routes>
     </BrowserRouter> */}
     </div>
+    <div>
+      <button onClick={() => setCurrPostNo(1)}>1</button> &nbsp;
+      <button onClick={() => setCurrPostNo(2)}>2</button> &nbsp;
+      <button onClick={() => setCurrPostNo(3)}>3</button>
+    </div>
+    {/* {loading && "Loading..."}
+    <p>{JSON.stringify(newPost)}</p> */}
   </CountContext.Provider>
 );
 
@@ -89,4 +102,4 @@ return (
 //   );
 // }
 
-export default App
+export default App;
