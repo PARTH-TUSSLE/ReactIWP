@@ -7,6 +7,7 @@ import Landing from "./components/Landing";
 import NotFound from "./components/NotFound";
 import CountContext from "./contexts/CountContext";
 import { useFetch } from "./components/customHooks/useFetch";
+import { usePrev } from "./components/customHooks/usePrev";
 
 function App() {
   
@@ -43,11 +44,20 @@ function App() {
 
 // ROUTING
 
+
+
+// useFetch
+
 const [count, setCount] = useState(0);
 const [currPostNo, setCurrPostNo] = useState(1);
 // const { post: newPost, loading } = useFetch(
 //   "https://jsonplaceholder.typicode.com/posts/" + currPostNo,
 // );
+
+// usePrev
+
+const [currVal, setCurrVal] = useState(0);
+const prevVal = usePrev(currVal);
 
 return (
   <CountContext.Provider
@@ -62,6 +72,10 @@ return (
       <TermsOfService />
       <Contact />
 
+      <p>Curr value: {currVal}</p>
+      <button onClick={ () => setCurrVal( curr => curr + 1 ) } >Increase the currVal:</button>
+      <p>Prev value: {prevVal}</p>
+
       {/* <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout/>} >
@@ -74,13 +88,21 @@ return (
       </Routes>
     </BrowserRouter> */}
     </div>
-    <div>
+
+    {/* useFetch */}
+
+    {/* <div>
       <button onClick={() => setCurrPostNo(1)}>1</button> &nbsp;
       <button onClick={() => setCurrPostNo(2)}>2</button> &nbsp;
       <button onClick={() => setCurrPostNo(3)}>3</button>
-    </div>
+    </div> */}
     {/* {loading && "Loading..."}
     <p>{JSON.stringify(newPost)}</p> */}
+
+      {/* usePrev */}
+
+
+
   </CountContext.Provider>
 );
 
