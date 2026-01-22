@@ -5,6 +5,7 @@ import Contact from "./components/Contact";
 import TermsOfService from "./components/TermsOfService";
 import Landing from "./components/Landing";
 import NotFound from "./components/NotFound";
+import CountContext from "./contexts/CountContext";
 
 function App() {
   
@@ -41,10 +42,21 @@ function App() {
 
 // ROUTING
 
+const [count, setCount] = useState(0);
+
 return (
-  <div>
-    <BrowserRouter>
-      
+  <CountContext.Provider
+    value={{
+      count,
+      setCount,
+    }}
+  >
+    <div>
+      <Blogs />
+      <TermsOfService />
+      <Contact />
+
+      {/* <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout/>} >
           <Route path="/blogs" element={<Blogs />} />
@@ -54,23 +66,27 @@ return (
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </BrowserRouter>
-  </div>
+    </BrowserRouter> */}
+    </div>
+  </CountContext.Provider>
 );
 
 
 }
 
-function Layout () {
-  return (
-    <div>
-      <Link to="/">Landing</Link> | <Link to="/blogs">Blogs</Link> |{" "}
-      <Link to="/contact">Contacts</Link> |{" "}
-      <Link to="terms">Terms of Service</Link>
-      <Outlet />
-      Footer
-    </div>
-  );
-}
+// function Layout () {
+
+
+
+//   return (
+//     <div>
+//       <Link to="/">Landing</Link> | <Link to="/blogs">Blogs</Link> |{" "}
+//       <Link to="/contact">Contacts</Link> |{" "}
+//       <Link to="terms">Terms of Service</Link>
+//       <Outlet />
+//       Footer
+//     </div>
+//   );
+// }
 
 export default App
